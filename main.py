@@ -398,6 +398,8 @@ Factory.register("CentripetalMenu", CentripetalMenu)
 Factory.register("CentripetalRoot", CentripetalRoot)
 
 class CentripetalApp(App):
+	icon = 'icon.png'
+	
 	def build(self):
 		#self.root = FloatLayout()
 		#self.grid = None
