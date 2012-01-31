@@ -360,7 +360,7 @@ class CentripetalMenu(Widget):
 			self.logo = Rectangle(size=(405, 153), pos=(self.size[0]/2 - 405/2, self.size[1]/2 - 153/2 + 150), source='logo.png')
 	
 	def update(self, dt):
-		self.logo.pos = (self.size[0]/2 - 405/2, self.size[1]/2 - 153/2 + 165 + sin(self.t * 3) * 10)
+		self.logo.pos = (self.size[0]/2 - 405/2, self.size[1]/2 - 153/2 + 157 + sin(self.t * 3) * 10)
 
 		self.t += dt
 
