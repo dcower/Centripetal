@@ -1,0 +1,93 @@
+#:kivy 1.0.9
+
+<Ball>:
+    size: 30, 30
+    canvas:
+        Color:
+            rgb: 1, 1, 1
+        Ellipse:
+            pos: self.pos[0] - self.size[0]/2, self.pos[1]-self.size[1]/2
+            size: self.size
+
+<Block>:
+    size: 50, 50
+
+<Paddle>:
+    size: 40, 40
+
+    canvas:
+        Color:
+            rgb: 1, 1, 1
+        Ellipse:
+            pos: self.pos[0] - self.size[0]/2, self.pos[1]-self.size[1]/2
+            size: self.size
+            source: 'paddle.jpg'
+
+<KillSpace>:
+    size: 50, 50
+    canvas:
+        Color:
+            rgb: 1,0,0
+        Ellipse:
+            pos: self.pos[0] - self.size[0]/2, self.pos[1]-self.size[1]/2
+            size: self.size
+
+<CentripetalGame>:
+    ball: centripetal_ball
+    paddle: centripetal_paddle
+    killspace: centripetal_killspace
+
+    KillSpace:
+        id: centripetal_killspace
+
+    Paddle:
+        id: centripetal_paddle
+                
+    Ball:
+        id: centripetal_ball
+        center: self.parent.center
+    
+    Label:
+        text: str(root.score)
+        halign: 'right'
+        valign: 'bottom'
+        pos: root.width-100,root.height - 45
+        color: 1,1,1,1
+        font_size: 30
+        text_size: self.size
+    
+    Label:
+        text: 'Best:'
+        halign: 'left'
+        valign: 'bottom'
+        pos: 0,root.height - 45
+        color: 1,1,1,1
+        font_size: 30
+        text_size: self.size
+
+    Label:
+        text: str(root.best_score)
+        halign: 'left'
+        valign: 'bottom'
+        pos: 100,root.height - 45
+        color: 1,1,1,1
+        font_size: 30
+        text_size: self.size
+
+<CentripetalMenu>:
+    canvas:
+        Rectangle:
+            size: 405, 153
+            pos: root.size[0]/2 - 405/2, root.size[1]/2 - 153/2 + 150
+            source: 'logo.png'
+    
+    Button:
+        width: 250
+        center_x: root.size[0] / 2
+        center_y: root.size[1] / 2
+        text: 'Start Game'
+        on_release: root.parent.start_game()
+        background_color: 0.2, 0.2, 0.2, 1
+        font_size: 30
+
+<CentripetalRoot>:
