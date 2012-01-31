@@ -1,6 +1,10 @@
 """
+CENTRIPETAL!
+
 Sorry for the messy code! I only found out about the contest ~2 days
 before it was over, so I didn't have much time to write nice code. :(
+
+Copyright 2012 Dillon Cower, d <last name> @ gmail . com
 """
 import kivy
 from kivy.app import App
