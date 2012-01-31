@@ -353,7 +353,16 @@ class Music(Widget):
 			self.sound.on_stop = self.sound.play
 
 class CentripetalMenu(Widget):
-	pass
+	def start(self):
+		self.t = 0.0
+
+		with self.canvas:
+			self.logo = Rectangle(size=(405, 153), pos=(self.size[0]/2 - 405/2, self.size[1]/2 - 153/2 + 150), source='logo.png')
+	
+	def update(self, dt):
+		self.logo.pos = (self.size[0]/2 - 405/2, self.size[1]/2 - 153/2 + 165 + sin(self.t * 3) * 10)
+
+		self.t += dt
 
 class CentripetalRoot(Widget):
 	STATE_MENU = 0
@@ -368,11 +377,17 @@ class CentripetalRoot(Widget):
 		self.menu.size = Window.size
 		self.add_widget (self.menu)
 
+		self.menu.start()
+
+		Clock.schedule_interval(self.menu.update, 1.0/60.0)
+
 		self.music = Music()
 		self.add_widget (self.music)
 		self.music.start()
 
 	def start_game(self):
+		Clock.unschedule(self.menu.update)
+
 		self.state = CentripetalRoot.STATE_PLAY
 
 		self.remove_widget (self.menu)
@@ -399,7 +414,7 @@ Factory.register("CentripetalRoot", CentripetalRoot)
 
 class CentripetalApp(App):
 	icon = 'icon.png'
-	
+
 	def build(self):
 		#self.root = FloatLayout()
 		#self.grid = None
